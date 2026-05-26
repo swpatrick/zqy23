@@ -85,8 +85,11 @@ download_image () {
 	fi
 
 	echo Extracting Archive
-	echo -e "$current_password\n" | sudo -S unzip -o $dest -d $dest
-	echo -e "$current_password\n" | sudo -S rm $dest_zip
+	# make sure destination directory exists
+	echo -e "$current_password\n" | sudo -S mkdir -p "$dest"
+	# unzip the downloaded archive into the destination directory
+	echo -e "$current_password\n" | sudo -S unzip -o "$dest_zip" -d "$dest"
+	echo -e "$current_password\n" | sudo -S rm -f "$dest_zip"
 }
 
 # apply custom config for controller detection, root and fingerprint spoof
