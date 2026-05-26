@@ -312,8 +312,8 @@ else
 		then
 			prepare_custom_image_location
 			download_image $ANDROID13_IMG $ANDROID13_IMG_HASH /var/lib/waydroid/custom "Android 13 Custom Image"
-			echo Initializing Waydroid.
-			echo -e "$current_password\n" | sudo -S waydroid init
+			echo Initializing Waydroid with local system/vendor images.
+			echo -e "$current_password\n" | sudo -S waydroid init -c /var/lib/waydroid/custom/system.img -v /var/lib/waydroid/custom/vendor.img
 			check_waydroid_init
 		fi
 
